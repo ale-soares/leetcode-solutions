@@ -3,9 +3,14 @@ class Solution:
     if len(s) != len(t):
       return False
 
-    countS, countT = {}, {}
+    charCount = {}
 
-    for i in range(len(s)):
-      countS[s[i]] = 1 + countS.get(s[i], 0)
-      countT[t[i]] = 1 + countT.get(t[i], 0)
-    return countS == countT
+    for char in s:
+      charCount[char] = charCount.get(char, 0) + 1
+
+    for char in t:
+      if char not in charCount or charCount[char] == 0:
+        return False
+      charCount[char] -= 1
+
+    return True
