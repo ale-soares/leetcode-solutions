@@ -1,6 +1,4 @@
-import re
-
-# reversing
+# Reversing
 class Solution:
   def isPalindrome(self, s: str) -> bool:
     new = ''
@@ -9,7 +7,7 @@ class Solution:
         new += a.lower()
     return (new == new[::-1])
   
-#two pointers
+# Two pointers
 class Solution:
   def isPalindrome(self, s: str) -> bool:
     alphnum = "".join(filter(str.isalnum, s))
