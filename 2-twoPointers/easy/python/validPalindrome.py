@@ -12,19 +12,16 @@ class Solution:
 #two pointers
 class Solution:
   def isPalindrome(self, s: str) -> bool:
-    s = s.lower()
-    pattern = re.compile('[\W_]')
-    s = re.sub(pattern, '', s)
+    alphnum = "".join(filter(str.isalnum, s))
+    clean = alphnum.lower()
 
-    if len(s) == 0:
-      return True
+    l, r = 0, len(clean) - 1
 
-    left, right = 0, len(s)-1
-
-    while left < right:
-      if s[left] != s[right]:
+    while l < r:
+      if (clean[l] != clean[r]):
         return False
-      left += 1
-      right -= 1
+      
+      l += 1
+      r -= 1
 
     return True
