@@ -6,6 +6,7 @@ class ListNode:
     self.val = val
     self.next = next
 
+# Using tail and dummy
 class Solution:
   def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
     tail = dummy = ListNode()
@@ -22,3 +23,21 @@ class Solution:
     tail.next = list1 or list2
 
     return dummy.next
+  
+# Using head and curr
+class Solution:
+  def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    curr = head = ListNode()
+
+    while list1 and list2:
+      if list1.val < list2.val:
+        curr.next = list1
+        list1 = list1.next
+      else:
+        curr.next = list2
+        list2 = list2.next
+
+      curr = curr.next
+
+    curr.next = list1 or list2
+    return head.next
