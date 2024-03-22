@@ -35,3 +35,25 @@ class Solution:
       counter[number] += 1
 
     return sorted(counter, key=counter.get, reverse=True)[:k]
+  
+# Solution using bucket sort | O(n)
+class Solution:
+  def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    # uses hashmap where the key is count (how many times element appears) and the value is a list of values that appear n times
+    # ex: [1, 1, 2, 2, 100] -> [0... 1: [100], 2: [1, 2], ...]
+    # this is more efficient since hashmap size will be proportionate to array size
+    
+    count = {}
+    freq = [[] for i in range(len(nums) + 1)]
+
+    for n in nums:
+      count[n] = 1 + count.get(n, 0)
+    for n, c in count.items():
+      freq[c].append(n)
+
+    res = []
+    for i in range(len(freq) - 1, 0, -1):
+      for n in freq[i]:
+        res.append(n)
+        if len(res) == k:
+          return res
