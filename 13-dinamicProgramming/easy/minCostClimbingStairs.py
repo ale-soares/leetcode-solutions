@@ -25,7 +25,6 @@ class Solution:
   def minCostClimbingStairs(self, cost: List[int]) -> int:
     cost.append(0)
     steps = len(cost) - 1
-    memo = {}
 
     def helper(step, memo):
       if step <= 1: return cost[step]
@@ -36,4 +35,4 @@ class Solution:
       
       return memo[step]
 
-    return helper(steps, memo)
+    return helper(steps, memo = {})
