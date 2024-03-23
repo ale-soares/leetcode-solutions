@@ -4,6 +4,7 @@ class Solution:
   # use counter1 to count the characters in s1
   # use counter2 for the same-length prefix of s2.
   # iterate a sliding window of length len(s1) across 2 and update ctr2
+    # window always needs to have size of s1
   # if ever counter1 == counter2, return True; otherwise, return False
 
   def checkInclusion(self, s1: str, s2: str) -> bool:
