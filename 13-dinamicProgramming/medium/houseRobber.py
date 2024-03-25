@@ -1,5 +1,19 @@
 from typing import List
 
+# Iterative solution using memoization (non bottom-up)
+class Solution:
+  def rob(self, nums: List[int]) -> int:
+    nums_len = len(nums)
+    if len(nums) < 2: return nums[0]
+
+    memo = [0] * nums_len
+    memo[0], memo[1] = nums[0], max(nums[0], nums[1])
+
+    for i in range(2, nums_len):
+      memo[i] = max(memo[i - 2] + nums[i], memo[i - 1])
+
+    return memo[-1]
+
 # Solution using recursion and memoization
 class Solution:
   def rob(self, nums: List[int]) -> int:
