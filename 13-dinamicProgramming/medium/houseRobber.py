@@ -4,12 +4,16 @@ from typing import List
 class Solution:
   def rob(self, nums: List[int]) -> int:
     nums_len = len(nums)
-    if len(nums) < 2: return nums[0]
+    # if there is only one element, return it
+    if nums_len < 2: return nums[0]
 
+    # create array to store memoized max loot at each index
     memo = [0] * nums_len
+    # memoize max loot at first 2 indexes
     memo[0], memo[1] = nums[0], max(nums[0], nums[1])
 
     for i in range(2, nums_len):
+      # fill the rest of the memoized array and use previous values to calculate new ones
       memo[i] = max(memo[i - 2] + nums[i], memo[i - 1])
 
     return memo[-1]
