@@ -1,20 +1,25 @@
 class Solution:
   def longestPalindrome(self, s: str) -> str:
-    substr, substr_len = "", 0
-    str_len = len(s)
+    max_substr = ""
+    input_len = len(s)
 
-    for i in range(str_len):
-      if str_len % 2 != 0: l, r = i, i
-      else: l, r = i, i + 1
-      
-      while l >= 0 and r < str_len and s[l] == s[r]:
-        if (r - l + 1) > substr_len:
-          substr = s[l : r + 1]
-          substr_len = r - l + 1
+    def expand_from_center(l, r):
+      while l >= 0 and r < input_len and s[l] == s[r]:
         l -= 1
         r += 1
 
-    return substr
+      return s[l + 1 : r]
+
+    for i in range(input_len):
+      odd = expand_from_center(i, i)
+      even = expand_from_center(i, i + 1)
+      
+      if len(odd) > len(max_substr):
+        max_substr = odd
+      if len(even) > len(max_substr):
+        max_substr = even
+
+    return max_substr
   
 # Solution using dynamic programming
 class Solution:
