@@ -20,4 +20,20 @@ class Solution:
     self.invertTree(root.right)
 
     return root
+  
+# Solution using separate dfs function | Time Complexity: O(n), Space Complexity : O(n)
+class Solution:
+  def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    if not root: return root
+
+    def dfs(root):
+      left = self.invertTree(root.left)
+      right = self.invertTree(root.right)
+
+      root.left = right
+      root.right = left
+
+      return root
+
+    return dfs(root)
       
