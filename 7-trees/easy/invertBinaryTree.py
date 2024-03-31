@@ -7,11 +7,13 @@ class TreeNode:
     self.left = left
     self.right = right
 
+# Recursive solution | Time Complexity: O(n), Space Complexity : O(n)
 class Solution:
   def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-    if not root:
-      return None
+    # base case
+    if not root: return None
 
+    # swap children
     root.right, root.left = root.left, root.right
 
     self.invertTree(root.left)
