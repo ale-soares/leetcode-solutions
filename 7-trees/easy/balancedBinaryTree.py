@@ -7,7 +7,7 @@ class TreeNode:
     self.left = left
     self.right = right
 
-# 1: Solution using 0 and -1
+# 1: Solution using 0 and -1 | Time complexity: O(p + q)
 class Solution:
   def isBalanced(self, root: Optional[TreeNode]) -> bool:
     def dfs(root):
@@ -22,7 +22,7 @@ class Solution:
 
     return dfs(root) >= 0
 
-# 2: Solution using array containing balance and tree height
+# 2: Solution using array containing balance and tree height | Time complexity: O(p + q)
 class Solution:
   def isBalanced(self, root: Optional[TreeNode]) -> bool:
     # dfs return array with 2 values, first is bool representation of balance and second is tree height
@@ -43,7 +43,7 @@ class Solution:
 
     return dfs(root)[0]
 
-# 3: Solution using dictionary to access values by key
+# 3: Solution using dictionary to access values by key | Time complexity: O(p + q)
 class Solution:
   def isBalanced(self, root: Optional[TreeNode]) -> bool:
     # dfs return dict with 2 values, first is bool representation of balance and second is tree height
@@ -62,7 +62,7 @@ class Solution:
 
     return dfs(root)["balanced"]
   
-# 4: Solution using separate helper function
+# 4: Solution using separate helper function | Time complexity: O(p + q)
 class Solution:
   def helper(self, root):
     if root is None: return 0
