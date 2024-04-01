@@ -7,7 +7,7 @@ class TreeNode:
     self.left = left
     self.right = right
 
-# 1: Using 0 and -1
+# 1: Solution using 0 and -1
 class Solution:
   def isBalanced(self, root: Optional[TreeNode]) -> bool:
     def dfs(root):
@@ -22,7 +22,7 @@ class Solution:
 
     return dfs(root) >= 0
 
-# 2: Using array containing balance and tree height
+# 2: Solution using array containing balance and tree height
 class Solution:
   def isBalanced(self, root: Optional[TreeNode]) -> bool:
     # dfs return array with 2 values, first is bool representation of balance and second is tree height
@@ -30,17 +30,18 @@ class Solution:
       if not node: return [True, 0]
 
       l_height, r_height = dfs(node.left), dfs(node.right)
-
       sides_height_diff = abs(l_height[1] - r_height[1])
 
-      is_balanced = (l_height[0] and r_height[0] and sides_height_diff <= 1)
+      is_balanced_from_subtree = l_height[0] and r_height[0]
+      is_balanced_from_root = sides_height_diff <= 1
+
       height_from_node = max(l_height[1], r_height[1])
 
-      return [is_balanced, 1 + height_from_node]
+      return [(is_balanced_from_root and is_balanced_from_subtree), 1 + height_from_node]
 
     return dfs(root)[0]
 
-# 2: Using dictionary to access values by key
+# 3: Solution using dictionary to access values by key
 class Solution:
   def isBalanced(self, root: Optional[TreeNode]) -> bool:
     # dfs return dict with 2 values, first is bool representation of balance and second is tree height
@@ -58,3 +59,20 @@ class Solution:
       return {"balanced": is_balanced, "height": 1 + height_from_node}
 
     return dfs(root)["balanced"]
+  
+# 4: Solution using separate helper function
+class Solution:
+  def helper(self, root):
+    if root is None: return 0
+
+    left_height = self.helper(root.left)
+    right_height = self.helper(root.right)
+
+    if left_height == -1 or right_height == -1: return -1
+    if abs(left_height - right_height) > 1: return -1
+
+    return 1 + max(left_height, right_height)
+
+  def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    answer = self.helper(root)
+    return answer != -1
