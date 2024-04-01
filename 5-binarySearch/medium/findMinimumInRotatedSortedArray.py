@@ -3,11 +3,11 @@ from typing import List
 # Time complexity: O(log n), Space complexity: O(1)
 class Solution:
   def findMin(self, nums: List[int]) -> int:
-    start , end = 0, len(nums) - 1 
+    start, end = 0, len(nums) - 1 
     curr_min = nums[0]
     
-    while start  <  end :
-      mid = start + (end - start ) // 2
+    while start < end :
+      mid = start + (end - start) // 2
       curr_min = min(curr_min, nums[mid])
       
       # right has the min 
