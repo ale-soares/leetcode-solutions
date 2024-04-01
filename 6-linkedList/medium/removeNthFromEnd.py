@@ -36,7 +36,7 @@ class Solution:
   def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
     slow = fast = head
 
-    for i in range(n):
+    for _ in range(n):
         fast = fast.next
 
     if not fast: return head.next
@@ -47,3 +47,25 @@ class Solution:
 
     slow.next = slow.next.next
     return head
+  
+# Solution using two pointers nth nodes apart | Time complexity: O(n), Space complexity: O(1)
+class Solution:
+  def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    # add dummy node to beginning of list to have left pointer point to it
+    dummy = ListNode(0, head)
+    left, right = dummy, head
+
+    # shift right until it has exactly n distance from left
+    while n > 0 and right:
+      right = right.next
+      n -= 1
+
+    # shift pointers until right reaches the end of the list
+    # at this point, left will point to the node before the one that needs to be deleted
+    while right:
+      left = left.next
+      right = right.next
+
+    # delete the node at nth from the end and return head of new list
+    left.next = left.next.next
+    return dummy.next
