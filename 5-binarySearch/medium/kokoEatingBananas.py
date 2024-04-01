@@ -1,6 +1,9 @@
+# @TODO revision resource: https://constanttime.io/binary-search/koko-eating-bananas
+
 import math
 from typing import List
 
+# Time complexity: O(n log k), Space complexity: O(1)
 class Solution:
   def minEatingSpeed(self, piles: List[int], h: int) -> int:
     l, r = 1, max(piles)
