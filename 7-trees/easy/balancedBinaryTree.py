@@ -37,6 +37,8 @@ class Solution:
 
       height_from_node = max(l_height[1], r_height[1])
 
+      # to be balanced, right subtree needs to be balanced, left subtree needs to be balanced and
+      # both need to be balanced from root
       return [(is_balanced_from_root and is_balanced_from_subtree), 1 + height_from_node]
 
     return dfs(root)[0]
