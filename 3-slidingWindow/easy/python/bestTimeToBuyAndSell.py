@@ -11,7 +11,7 @@ class Solution:
       res = max(res, price - lowest)
     return res
   
-# Two pointer solution
+# Two pointer solution | Time complexity: O(n), Space complexity: O(1)
 class Solution:
   def maxProfit(self, prices: List[int]) -> int:
     buy, sell, max_profit = 0, 1, 0
@@ -26,4 +26,21 @@ class Solution:
         buy = sell
       sell += 1
 
+    return max_profit
+  
+# Solution using min price and max profit | Time complexity: O(n), Space complexity: O(1)
+class Solution:
+  def maxProfit(self, prices: List[int]) -> int:
+    min_price = prices[0]
+    max_profit = 0
+
+    for price in prices:
+      if price < min_price:
+        min_price = price
+
+      current_profit = price - min_price
+
+      if current_profit > max_profit:
+        max_profit = current_profit
+        
     return max_profit
