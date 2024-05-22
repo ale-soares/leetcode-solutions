@@ -14,15 +14,20 @@ class Solution:
 
     cur = head
     while cur:
+      # create copy of current node with its value
       copy = Node(cur.val)
+      # add copy to HM 
       oldToCopy[cur] = copy
+      # move to next iteration
       cur = cur.next
 
     cur = head
     while cur:
       copy = oldToCopy[cur]
+      # add next and random pointers of old node to copy
       copy.next = oldToCopy[cur.next]
       copy.random = oldToCopy[cur.random]
+      # move to next iteration
       cur = cur.next
 
     return oldToCopy[head]
